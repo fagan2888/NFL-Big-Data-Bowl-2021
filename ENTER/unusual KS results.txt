@@ -1,0 +1,145 @@
+
+
+
+# Create the random variables with mean 5, and sd 3
+x_10 = t1.height.values
+# Print the p values
+stats.shapiro(x_10)
+
+
+
+
+
+
+--- initial examination ---
+
+
+# Shapiro-Wilk Test
+from numpy.random import seed
+from numpy.random import randn
+from scipy.stats import shapiro
+# seed the random number generator
+# seed(1)
+# generate univariate observations
+# data = 5 * randn(100) + 50
+
+data = t1.height.values
+
+# normality test
+
+stat, p = shapiro(data)
+print('Statistics=%.3f, p=%.3f' % (stat, p))
+# interpret
+alpha = 0.40
+if p > alpha:
+    print('Sample looks Gaussian (fail to reject H0)')
+else:
+    print('Sample does not look Gaussian (reject H0)')
+    
+    # from scipy.stats import norm
+# from statsmodels.stats import shapiro
+# my_data = t1.height.values
+# shapiro(my_data)
+
+# from scipy import stats
+# np.random.seed(12345678)
+# # x = stats.norm.rvs(loc=5, scale=3, size=100)
+# x = t1.height.values
+
+# shapiro_test = stats.shapiro(x)
+# shapiro_test
+
+
+# # shapiro_test.statistic
+# # shapiro_test.pvalue
+
+
+
+
+
+
+
+
+
+--- this works ---
+
+
+from scipy import stats
+pts = 1303
+np.random.seed(28041990)
+
+x = t1.height.values
+
+k2, p = stats.normaltest(x)
+alpha = 1e-3
+print("p = {:g}".format(p))
+p = 3.27207e-11
+if p < alpha:  # null hypothesis: x comes from a normal distribution
+    print("The null hypothesis can be rejected")
+else:
+    print("The null hypothesis cannot be rejected")
+
+and my output:
+p = 0.000249036
+The null hypothesis can be rejected
+
+
+
+
+
+
+
+
+
+
+
+
+--- this works ---
+
+# Create the random variables with mean 5, and sd 3
+x_10 = stats.norm.rvs(loc=5, scale=3, size=10)
+x_50 = stats.norm.rvs(loc=5, scale=3, size=50)
+x_100 = stats.norm.rvs(loc=5, scale=3, size=100)
+x_1000 = stats.norm.rvs(loc=5, scale=3, size=1000)
+# Print the p values
+stats.shapiro(x_10)
+stats.shapiro(x_50)
+stats.shapiro(x_100)
+stats.shapiro(x_1000)
+# (The test statistic, the p-value) for x_N above
+#(0.9122101664543152, 0.2965205907821655) # Null Accepted
+#(0.9418673515319824, 0.015981076285243034) # Null Rejected
+#(0.9918511509895325, 0.810341477394104) # Null Accepted
+#(0.9987027645111084, 0.6903988718986511) Null Accepted
+
+
+
+
+
+--- this works ---
+
+from scipy import stats
+np.random.seed(12345678)
+
+x = t1.height.values
+
+# x = stats.norm.rvs(loc=5, scale=3, size=100)
+
+shapiro_test = stats.shapiro(x)
+
+shapiro_test
+# ShapiroResult(statistic=0.9772805571556091, pvalue=0.08144091814756393)
+
+
+# shapiro_test.statistic
+# 0.9772805571556091
+# shapiro_test.pvalue
+# 0.08144091814756393
+
+(0.9824205040931702, 1.7378445904547846e-11)
+
+
+
+
+
+
