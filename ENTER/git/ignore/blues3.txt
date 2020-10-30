@@ -1,0 +1,37 @@
+
+# alt.Chart(df).mark_circle().encode(
+#     x=alt.X('x', axis=alt.Axis(format='%', title='percentage')),
+#     y=alt.Y('y', axis=alt.Axis(format='$', title='dollar amount'))
+# )
+
+source = poss
+
+alt.renderers.set_embed_options(theme='dark')
+
+bars = alt.Chart(source).mark_bar(color='#0071BC',size=5,opacity=.99).encode(
+    
+    x=alt.X('total_poss:Q', title='\nTOTAL  PASS  ATTEMPTS', axis=alt.Axis(grid=False)),
+    
+    y=alt.Y('ind:O', 
+            sort="-x", 
+            title='NFL Team',
+            axis=alt.Axis(grid=False, ticks=False)))
+
+text = bars.mark_text(align='left', baseline='middle',dx=3, color="#eda02a").encode(text='total_poss:Q')
+       
+(bars + text).properties(height=700, width=500,title='Pass Attempts by NFL Team').configure_title(
+    fontSize=15,
+    font='Arial',
+    anchor='start',
+    color='gray').configure_axisLeft(labelColor='grey', titleColor='grey', labelFontSize=11).configure_axisBottom(labelColor='grey', titleColor='#0071BC').configure_view(strokeOpacity=0).configure_axis(
+    labelFontSize=11,
+    titleFontSize=13
+).configure_axis(grid=False, domain=False)
+
+
+# alt.Chart(data).mark_bar().encode(
+#     x=alt.X('x', bin=True, axis=alt.Axis(labelAngle=45)),
+#     y=alt.Y('count()', axis=alt.Axis(labels=False, ticks=False, title=None))
+    
+    
+#  y.yaxis.major_tick_line_color = None
