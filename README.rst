@@ -26,6 +26,7 @@ NG-Stats
 * https://nextgenstats.nfl.com/
 * https://nextgenstats.nfl.com/glossary
 * more entries
+* the last change for friday... 
 
 
 |
