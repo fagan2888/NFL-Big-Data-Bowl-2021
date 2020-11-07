@@ -1,0 +1,1 @@
+fig.savefig('myimage.svg', format='svg', dpi=1200)
